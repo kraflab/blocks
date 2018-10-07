@@ -1,0 +1,9 @@
+shapeless_platform 384 448 0 0xff_11ff88
+shapeless_platform 448 448 0 0xff_11ff88
+shapeless_platform 512 448 0 0xff_11ff88
+shapeless_platform 576 448 0 0xff_11ff88
+shapeless_platform 640 448 0 0xff_11ff88
+static_box 512 448 320 64
+shapeless_platform 512 300
+static_box 512 300 64 64
+static_spike 640 384 0 0xff_ff1188
