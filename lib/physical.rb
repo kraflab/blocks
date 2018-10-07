@@ -114,9 +114,9 @@ module Blocks
     end
 
     def outside_play?(leeway = 0)
-      p_y > Config::GAME_HEIGHT + leeway ||
+      p_y > GAME_HEIGHT + leeway ||
         p_y < -leeway ||
-        p_x > Config::GAME_WIDTH + leeway ||
+        p_x > GAME_WIDTH + leeway ||
         p_x < -leeway
     end
   end

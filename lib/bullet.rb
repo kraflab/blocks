@@ -4,9 +4,9 @@ module Blocks
   class Bullet < Base
     SPAWN_LEEWAY = 32
     LEFT_EDGE = -SPAWN_LEEWAY
-    RIGHT_EDGE = Config::GAME_WIDTH + SPAWN_LEEWAY
+    RIGHT_EDGE = GAME_WIDTH + SPAWN_LEEWAY
     TOP_EDGE = -SPAWN_LEEWAY
-    BOTTOM_EDGE = Config::GAME_HEIGHT + SPAWN_LEEWAY
+    BOTTOM_EDGE = GAME_HEIGHT + SPAWN_LEEWAY
     SPAWN_HEIGHT = BOTTOM_EDGE - TOP_EDGE
     SPAWN_WIDTH = RIGHT_EDGE - LEFT_EDGE
     IMAGE = Gosu::Image.new('media/bullet.png')
@@ -14,14 +14,14 @@ module Blocks
     include Drawable
     include Physical
 
-    def initialize(score: 0)
+    def initialize
       @image = IMAGE
       initialize_physics
-      reset(score)
+      reset
     end
 
-    def update(score: 0)
-      detect_boundaries(score)
+    def update
+      detect_boundaries
     end
 
     private
@@ -34,7 +34,7 @@ module Blocks
       shape.e = 1
     end
 
-    def score_color(score)
+    def spawn_color
       colors = [
         0xff_ffffff,
         0xff_ffff11,
@@ -47,11 +47,11 @@ module Blocks
         0xff_1188ff,
         0xff_88ff11
       ]
-      colors[(score / 100) % colors.size]
+      colors[(Game.frame / 100) % colors.size]
     end
 
-    def reset(score)
-      @color = score_color(score)
+    def reset
+      @color = spawn_color
 
       move_to(*random_spawn_position)
       accelerate_to(*random_spawn_velocity)
@@ -76,8 +76,8 @@ module Blocks
       [Gosu.offset_x(angle, speed.to_f), Gosu.offset_y(angle, speed.to_f)]
     end
 
-    def detect_boundaries(score)
-      reset(score) if outside_play?(2 * SPAWN_LEEWAY)
+    def detect_boundaries
+      reset if outside_play?(2 * SPAWN_LEEWAY)
     end
   end
 end

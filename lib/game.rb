@@ -44,10 +44,10 @@ module Blocks
     def update
       update_score
       spawn_bullet if spawn_bullet?
-      Config::PHYSICS_TIME_DIVISIONS.times do
+      PHYSICS_TIME_DIVISIONS.times do
         @player.update
-        @bullets.each { |i| i.update(score: @score) }
-        @space.step(@dt / Config::PHYSICS_TIME_DIVISIONS)
+        @bullets.each { |i| i.update }
+        @space.step(@dt / PHYSICS_TIME_DIVISIONS)
       end
 
       Game.next_frame
@@ -58,7 +58,7 @@ module Blocks
     end
 
     def spawn_bullet
-      bullet = Bullet.new(score: @score)
+      bullet = Bullet.new
       @space.add_body(bullet.shape.body)
       @space.add_shape(bullet.shape)
       @bullets << bullet

@@ -23,7 +23,7 @@ module Blocks
     end
 
     def reset_position
-      move_to(Config::GAME_WIDTH / 2.0, Config::GAME_HEIGHT / 4.0)
+      move_to(GAME_WIDTH / 2.0, GAME_HEIGHT / 4.0)
       reset_rotation
     end
 
