@@ -10,6 +10,18 @@ module Blocks
     SPAWN_HEIGHT = BOTTOM_EDGE - TOP_EDGE
     SPAWN_WIDTH = RIGHT_EDGE - LEFT_EDGE
     IMAGE = Gosu::Image.new('media/bullet.png')
+    SPAWN_COLORS = [
+      0xff_ffffff,
+      0xff_ffff11,
+      0xff_11ffff,
+      0xff_ff11ff,
+      0xff_ff8811,
+      0xff_8811ff,
+      0xff_11ff88,
+      0xff_ff1188,
+      0xff_1188ff,
+      0xff_88ff11
+    ].freeze
 
     include Drawable
     include Physical
@@ -35,19 +47,7 @@ module Blocks
     end
 
     def spawn_color
-      colors = [
-        0xff_ffffff,
-        0xff_ffff11,
-        0xff_11ffff,
-        0xff_ff11ff,
-        0xff_ff8811,
-        0xff_8811ff,
-        0xff_11ff88,
-        0xff_ff1188,
-        0xff_1188ff,
-        0xff_88ff11
-      ]
-      colors[(Game.frame / 100) % colors.size]
+      SPAWN_COLORS[(Game.frame / 100) % SPAWN_COLORS.size]
     end
 
     def reset
