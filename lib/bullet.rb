@@ -25,6 +25,7 @@ module Blocks
 
     include Drawable
     include Physical
+    include Utility
 
     def initialize
       @image = IMAGE
@@ -60,19 +61,19 @@ module Blocks
 
     def random_spawn_position
       x, y = 0, 0
-      if Blocks.coin_flip?
-        x = Blocks.coin_flip? ? LEFT_EDGE : RIGHT_EDGE
-        y = Blocks.rand(SPAWN_HEIGHT) - SPAWN_LEEWAY
+      if coin_flip?
+        x = coin_flip? ? LEFT_EDGE : RIGHT_EDGE
+        y = rand(SPAWN_HEIGHT) - SPAWN_LEEWAY
       else
-        y = Blocks.coin_flip? ? TOP_EDGE : BOTTOM_EDGE
-        x = Blocks.rand(SPAWN_WIDTH) - SPAWN_LEEWAY
+        y = coin_flip? ? TOP_EDGE : BOTTOM_EDGE
+        x = rand(SPAWN_WIDTH) - SPAWN_LEEWAY
       end
       [x, y]
     end
 
     def random_spawn_velocity
-      angle = Blocks.rand(360)
-      speed = Blocks.rand(20) != 0 ? BULLET_SPEED : BULLET_SPEED_SLOW
+      angle = rand(360)
+      speed = rand(20) != 0 ? BULLET_SPEED : BULLET_SPEED_SLOW
       [Gosu.offset_x(angle, speed.to_f), Gosu.offset_y(angle, speed.to_f)]
     end
 

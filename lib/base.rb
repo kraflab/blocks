@@ -20,16 +20,6 @@ module Blocks
     end
   end
 
-  module Utility
-    def sign(x)
-      x <=> 0
-    end
-
-    def zero_vector
-      CP::Vec2.new(0, 0)
-    end
-  end
-
   PHYSICS_TIME_DIVISIONS = 4
   GAME_WIDTH = 1024
   GAME_HEIGHT = 768
@@ -45,15 +35,4 @@ module Blocks
   MAX_FALL_SPEED = 1000
   BULLET_SPEED = 300
   BULLET_SPEED_SLOW = 100
-
-  extend self
-
-  def rand(n)
-    @rng ||= Random.new
-    @rng.rand(n)
-  end
-
-  def coin_flip?
-    rand(2) == 1
-  end
 end

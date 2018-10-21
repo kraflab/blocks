@@ -1,6 +1,7 @@
 require 'gosu'
 require 'chipmunk'
 require 'base'
+require 'utility'
 require 'board'
 require 'player'
 require 'bullet'
@@ -54,7 +55,7 @@ module Blocks
     end
 
     def spawn_bullet?
-      ((@score / 100) % 10) < 3 && Blocks.rand(2) == 0 && @bullets.count < 50
+      ((@score / 100) % 10) < 3 && @bullets.count < 50
     end
 
     def spawn_bullet
